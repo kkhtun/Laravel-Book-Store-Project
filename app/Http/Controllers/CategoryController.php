@@ -1,0 +1,32 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class CategoryController extends Controller
+{
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    
+    // public function index() {
+    //     if (request("perform") == "edit" && request("id")) {
+    //         echo "edit cat view";
+    //     } else if (request("perform") == "delete" && request("id")) {
+    //         echo "create a view to confirm delete";
+    //     }
+    // }
+}
