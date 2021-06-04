@@ -31,3 +31,7 @@ Route::get('/cat', [App\Http\Controllers\HomeController::class, 'category']);
 Route::post('/cat-add', [App\Http\Controllers\HomeController::class, 'catAdd']);
 Route::post('/cat-update', [App\Http\Controllers\HomeController::class, 'catUpdate']);
 Route::post('/cat-delete', [App\Http\Controllers\HomeController::class, 'catDelete']);
+
+// Routes related to book changes
+Route::get('/book-view', [App\Http\Controllers\HomeController::class, 'bookView']);
+Route::post('/book-add', [App\Http\Controllers\HomeController::class, 'bookAdd']);

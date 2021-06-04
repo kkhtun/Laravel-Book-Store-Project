@@ -14,7 +14,7 @@
                         <div class="form-group row">
                             <div class="col-md-6 offset-md-4 italic">
                                 <h2>Please confirm carefully before deleting the category.</h2>
-                                <h2>The following item will be deleted from the database.</h2>
+                                <h2>The following category will be deleted from the database.</h2>
                             </div>
                         </div>
 
@@ -36,7 +36,7 @@
                         </div>
 
                         <div class="form-group row items-center">
-                            <label for="last_modified" class="col-md-4 col-form-label text-md-right">{{ __('Category Description') }}</label>
+                            <label for="last_modified" class="col-md-4 col-form-label text-md-right">{{ __('Category Last Updated At') }}</label>
 
                             <div class="col-md-6">
                                 <p id="last_modified">{{ $category->updated_at }}</p>

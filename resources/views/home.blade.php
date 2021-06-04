@@ -4,6 +4,9 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-11">
+
+            <x-flash-message />
+
             <div class="card">
                 <div class="card-header flex">
                     <div>
@@ -16,7 +19,7 @@
                             <input type="text" class="w-75">
                         </div> --}}
                         <div class="hover:bg-gray-300 px-2">
-                            <a href="#" class="hover:text-black hover:no-underline">{{ __('Add Book') }}</a>
+                            <a href="/book-view?perform=add" class="hover:text-black hover:no-underline">{{ __('Add Book') }}</a>
                         </div>
                         <div class="px-2">
                             <select name="category" id="categorySearch">
@@ -53,9 +56,7 @@
                         <th>Book Name</th>
                         <th>Category</th>
                         <th>Author</th>
-                        <th>About</th>
-                        <th>Filename</th>
-                        <th>Last Modified</th>
+                        <th>Edit or Remove</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -64,9 +65,7 @@
                         <td>{{ $item->name }}</td>
                         <td>{{ $item->category->name }}</td>
                         <td>{{ $item->author }}</td>
-                        <td>{{ $item->about }}</td>
-                        <td>{{ $item->filename }}</td>
-                        <td>{{ $item->updated_at }}</td>
+                        <td class="text-center"><a href="/book-view?id={{ $item->id }}" class="btn btn-info">View Book Details</a></td>
                     </tr>
                     @endforeach
                     </tbody>

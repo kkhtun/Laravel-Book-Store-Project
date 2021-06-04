@@ -22,11 +22,5 @@ class CategoryController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     
-    // public function index() {
-    //     if (request("perform") == "edit" && request("id")) {
-    //         echo "edit cat view";
-    //     } else if (request("perform") == "delete" && request("id")) {
-    //         echo "create a view to confirm delete";
-    //     }
-    // }
+    
 }

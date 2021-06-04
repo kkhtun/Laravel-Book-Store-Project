@@ -50,7 +50,12 @@ class HomeController extends Controller
         $categories = new Category;
         $categories->name = $req->name;
         $categories->description = $req->description;
-        $categories->save();
+        $result = $categories->save();
+        if ($result) {
+            session(['type' => 'success', 'message'=>"Category added successfully"]);
+        } else {
+            session(['type' => 'danger', 'message'=>"There was an error. Please try again."]);
+        }
         return redirect('/home?select=categories');
     }
 
@@ -66,5 +71,24 @@ class HomeController extends Controller
         $category = Category::find($req->id);
         $category->delete();
         return redirect('/home?select=categories'); 
+    }
+
+    // functions related to admin book management 
+    public function bookView() {
+        if (request("id") && request("perform") == "edit") {
+            echo "book edit view";
+        } else if (request("id") && request("perform") == "delete") {
+            echo "confirm book delete view";
+        } else if (request("id") && !request("perform")) {
+            $book = Book::find(request("id"));
+            return view("book-view-admin", ["book" => $book]);
+        } else if (!request("id") && request("perform")=="add") {
+            $categories = Category::all('id','name');
+            return view("book-new", ["categories"=>$categories]);
+        }
+    }
+
+    public function bookAdd(Request $req) {
+        return $req->input();
     }
 }
