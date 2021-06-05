@@ -26,7 +26,7 @@ class HomeController extends Controller
     public function index()
     {
         if (request("select") == "books" || !request("select")) {
-            $items = Book::all();
+            $items = Book::with('category')->get();
         } else if (request("select") == "categories") {
             $items = Category::all();
         }
