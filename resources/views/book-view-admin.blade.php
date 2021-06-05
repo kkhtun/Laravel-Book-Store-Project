@@ -4,6 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-11">
+            <x-flash-message />
             <div class="card">
                 <div class="card-header">{{ __('Book Details') }}</div>
 
@@ -68,7 +69,7 @@
                             <div class="row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <a href="/book-view?perform=edit&id={{ $book->id }}" class="btn btn-warning">
-                                        {{ __('Edit Category') }}
+                                        {{ __('Edit Book Details') }}
                                     </a>
                                 </div>
                             </div>
@@ -76,7 +77,7 @@
                             <div class="row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <a href="/book-view?perform=delete&id={{ $book->id }}" class="btn btn-danger text-white">
-                                        {{ __('Delete Category') }}
+                                        {{ __('Delete Book') }}
                                     </a>
                                 </div>
                             </div>

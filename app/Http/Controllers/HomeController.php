@@ -26,10 +26,17 @@ class HomeController extends Controller
     public function index()
     {
         if (request("select") == "books" || !request("select")) {
-            $items = Book::with('category')->get();
+            if (request("categorySearch")) {
+                $items = Book::where('category_id', request('categorySearch'))->with('category')->get();
+            } else {
+                $items = Book::with('category')->get(); //with() to prevent lazy loading of laravel
+            }
+            $categories = Category::all('id', 'name'); //for categorySearch filter
+            return view("home", ["items"=> $items, "categories"=> $categories]);
         } else if (request("select") == "categories") {
             $items = Category::all();
+            return view("home", ["items"=> $items]);
         }
-        return view("home", ["items"=> $items]);
+
     }
 }

@@ -66,12 +66,12 @@ class CategoryController extends Controller
     //Helper function to add session variables
     private function addSessionFlash($check, $string, $error="") {
         if ($check) {
-            session(['type' => 'success', 'message'=>"Category $string successfully"]);
+            session(['type' => 'success', 'message'=>"Category $string successfully. $error"]);
         } else {
             session(['type' => 'danger', 'message'=>"There was an error. Please try again. $error"]);
         }
     }
-
+    
     //Helper function to validate incoming request data accepts $req as input
     private function validateRequest($request) {
         $validated = $request->validate([

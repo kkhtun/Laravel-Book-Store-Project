@@ -1,6 +1,12 @@
 @extends('layouts.app')
-
 @section('content')
+{{-- some css styles for tables, please don't kill me for doing this, helpppp... :x --}}
+<style>
+th, td {
+    padding-left: 5px;
+}
+</style>
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-11">
@@ -15,17 +21,25 @@
 
                 @if (request("select") == "books" || !request("select"))
                     <div class="ml-auto flex space-x-4">
-                        {{-- <div class="text-center">
-                            <input type="text" class="w-75">
-                        </div> --}}
+
+                        {{-- add book link  --}}
                         <div class="hover:bg-gray-300 px-2">
                             <a href="/book-view?perform=add" class="hover:text-black hover:no-underline">{{ __('Add Book') }}</a>
                         </div>
-                        <div class="px-2">
-                            <select name="category" id="categorySearch">
-                                <option value="all">All</option>
+
+                        {{-- filter by category select form--}}
+                        <form class="px-2" action="/home?select=books" method="GET">
+                            <input type="hidden" name="select" value="books">
+                            <select name="categorySearch" id="categorySearch" class="px-2 border border-1 border-black rounded-md" onchange="this.form.submit()">
+                                <option value="">All Categories</option>
+                                @foreach($categories as $category)
+                                    <option value="{{ $category->id }}" {{ $category->id == request('categorySearch') ? 'selected' : '' }}>
+                                        {{ $category->name }}
+                                    </option>
+                                @endforeach
                             </select>
-                        </div>
+                        </form>
+
                     </div>
                 @endif
 
@@ -39,20 +53,12 @@
 
                 </div>
 
-                {{-- <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-                </div> --}}
-
+                {{-- Book table --}}
                 @if (request("select") == "books" || !request("select"))
                 <table class="table-striped table-bordered">
                     <thead>
                     <tr class="text-center py-2 px-2">
+                        <th>No.</th>
                         <th>Book Name</th>
                         <th>Category</th>
                         <th>Author</th>
@@ -62,6 +68,7 @@
                     <tbody>
                     @foreach ($items as $item)
                     <tr class="">
+                        <td class="text-right pr-2">{{ $loop->iteration }}</td>
                         <td>{{ $item->name }}</td>
                         <td>{{ $item->category->name }}</td>
                         <td>{{ $item->author }}</td>
@@ -72,10 +79,12 @@
                 </table>
                 @endif
 
+                {{-- Categories table --}}
                 @if (request("select") == "categories")
                 <table class="table-striped table-bordered">
                     <thead>
                     <tr class="text-center">
+                        <th>No.</th>
                         <th>Category Name</th>
                         <th>Description</th>
                         <th>Last Modified</th>
@@ -84,6 +93,7 @@
                     </thead>
                     @foreach ($items as $item)
                     <tr>
+                        <td class="text-right pr-2">{{ $loop->iteration }}</td>
                         <td>{{ $item->name }}</td>
                         <td>{{ $item->description }}</td>
                         <td>{{ $item->created_at }}</td>

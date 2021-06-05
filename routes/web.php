@@ -33,3 +33,5 @@ Route::post('/cat-delete', [App\Http\Controllers\CategoryController::class, 'cat
 // Routes related to book changes
 Route::get('/book-view', [App\Http\Controllers\BookController::class, 'bookView']);
 Route::post('/book-add', [App\Http\Controllers\BookController::class, 'bookAdd']);
+Route::post('/book-update', [App\Http\Controllers\BookController::class, 'bookUpdate']);
+Route::post('/book-delete', [App\Http\Controllers\BookController::class, 'bookDelete']);
