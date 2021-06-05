@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'BookHub') }}</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -21,7 +21,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    {{ config('app.name', 'BookHub') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -34,7 +34,7 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav ml-auto space-x-2">
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
@@ -52,17 +52,17 @@
 
                             {{-- Links for viewing books and categories in dashboard --}}
                             @if (request("select") && request("select") == "books")
-                                <li class="nav-item hover:bg-gray-300 bg-gray-200">
+                                <li class="nav-item hover:bg-gray-400 bg-gray-300 rounded-md">
                             @else
-                                <li class="nav-item hover:bg-gray-300">
+                                <li class="nav-item hover:bg-gray-400 rounded-md">
                             @endif
                                 <a class="nav-link" href="/home?select=books">Books</a>
                             </li>
 
                             @if (request("select") && request("select") == "categories")
-                                <li class="nav-item hover:bg-gray-300 bg-gray-200">
+                                <li class="nav-item hover:bg-gray-400 bg-gray-300 rounded-md">
                             @else
-                                <li class="nav-item hover:bg-gray-300">
+                                <li class="nav-item hover:bg-gray-400 rounded-md">
                             @endif
                                 <a class="nav-link" href="/home?select=categories">Category</a>
                             </li>
