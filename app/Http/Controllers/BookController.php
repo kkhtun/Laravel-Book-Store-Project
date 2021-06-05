@@ -4,18 +4,102 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use App\Models\Book;
+use App\Models\Category;
+use Illuminate\Support\Facades\Validator;
 
 class BookController extends Controller
 {
-    function index() {
-        return view('home');
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+
+    // functions related to admin book management 
+    public function bookView() {
+        if (request("id") && request("perform") == "edit") {
+            echo "book edit view";
+        } else if (request("id") && request("perform") == "delete") {
+            echo "confirm book delete view";
+        } else if (request("id") && !request("perform")) {
+            $book = Book::find(request("id"));
+            return view("book-view-admin", ["book" => $book]);
+        } else if (!request("id") && request("perform")=="add") {
+            $categories = Category::all('id','name');
+            return view("book-new", ["categories"=>$categories]);
+        }
+    }
+
+    public function bookAdd(Request $req) {
+        $this->validateRequest($req);
+        $book = new Book;
+        $book->name = $req->name;
+        $book->category_id = $req->category;
+        $book->author = $req->author;
+        $book->about = $req->about;
+
+        if ($req->file('pdf')) {
+            $file = $req->file('pdf');
+            $filename = time().'_'.pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+            // File upload location
+            $location = 'books';
+            // Upload file
+            $file->move($location, $filename);
+
+            $book->filename = $filename;
+            $result = $book-save();
+
+            $this->addSessionFlash(true, "added");
+            return redirect("/home?select=home");
+        } else {
+            $this->addSessionFlash(false, "Uploaded", "File not uploaded.");
+            return redirect("/home?select=home");
+        }
+
     }
     
+
+
+
+
+
+
     public function download($filename){
         $file = public_path()."/books/".$filename.".pdf";
         $headers = array("Content-Type" => "application/pdf");
         return response()->file($file, $headers);
         // return response()->download($file, 'test_book_1.pdf',$headers);
-        
     }
+
+    //Helper function to add session variables
+    private function addSessionFlash($check, $string, $error="") {
+        if ($check) {
+            session(['type' => 'success', 'message'=>"Book $string successfully"]);
+        } else {
+            session(['type' => 'danger', 'message'=>"There was an error. Please try again. $error "]);
+        }
+    }
+
+    //Helper function to validate incoming request data accepts $req as input
+    private function validateRequest($request) {
+        $validated = $request->validate([
+            'name'=>'required',
+            'author'=>'required',
+            'about'=>'required',
+            'category'=>'required',
+            'pdf' => 'required|mimes:pdf'
+        ]);
+    }
+
 }

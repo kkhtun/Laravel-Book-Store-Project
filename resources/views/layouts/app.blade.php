@@ -52,17 +52,17 @@
 
                             {{-- Links for viewing books and categories in dashboard --}}
                             @if (request("select") && request("select") == "books")
-                                <li class="nav-item hover:bg-gray-200 bg-gray-100">
+                                <li class="nav-item hover:bg-gray-300 bg-gray-200">
                             @else
-                                <li class="nav-item hover:bg-gray-200">
+                                <li class="nav-item hover:bg-gray-300">
                             @endif
                                 <a class="nav-link" href="/home?select=books">Books</a>
                             </li>
 
                             @if (request("select") && request("select") == "categories")
-                                <li class="nav-item hover:bg-gray-200 bg-gray-100">
+                                <li class="nav-item hover:bg-gray-300 bg-gray-200">
                             @else
-                                <li class="nav-item hover:bg-gray-200">
+                                <li class="nav-item hover:bg-gray-300">
                             @endif
                                 <a class="nav-link" href="/home?select=categories">Category</a>
                             </li>
@@ -92,6 +92,16 @@
         </nav>
 
         <main class="py-4">
+            {{-- Checking validation errors and if any, display them as flash messages --}}
+            @if($errors->any())
+                @foreach($errors->all() as $error)
+                    {{ session()->put(['type'=>'danger', 'message'=>$error]) }} 
+                    <div class="mx-auto max-w-sm lg:max-w-4xl">
+                        <x-flash-message />
+                    </div>
+                @endforeach
+            @endif
+
             @yield('content')
         </main>
     </div>
