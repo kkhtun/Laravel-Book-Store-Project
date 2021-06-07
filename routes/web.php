@@ -17,6 +17,7 @@ use App\Http\Controllers\BookController;
 // Route::get('/download/{filename}', [BookController::class, 'download'])->where('filename','.*');
 
 Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index']);
+Route::get('/book', [App\Http\Controllers\WelcomeController::class, 'showDetails']);
 
 Auth::routes([
   'register' => true, // Registration Routes...

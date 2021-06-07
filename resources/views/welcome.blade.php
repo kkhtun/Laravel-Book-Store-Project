@@ -14,19 +14,22 @@
                 </form>
             </section>
 
-        <section class="container lg:mt-14 mt-8">
+        <section class="container lg:mt-14 mt-8"> 
             <div class="grid lg:grid-cols-3 md:grid-cols-2 gap-2">
                 @foreach($books as $book)
-                <div class="grid grid-cols-12 border border-1 rounded-md">
-                    <div class="col-span-3 p-2">
-                        {{ $book->filename.'.png' }}
+                <a href="/book?id={{ $book->id }}" class="hover:no-underline hover:text-black">
+                    <div class="grid grid-cols-12 border border-1 rounded-md hover:bg-gray-300 focus:bg-gray-300">
+                        <div class="col-span-3 p-2">
+                            <!-- {{ $book->filename }} -->
+                            <img src="/books/test.jpg" alt="book cover">
+                        </div>
+                        <div class="col-span-9 p-2 relative">
+                            <h2 class="font-weight-bold">{{ $book->name }}</h2>
+                            <p class="text-muted text-xs text-md">Author: {{ $book->author }}</p>
+                            <p class="absolute bottom-2 right-2"><small class="bg-blue-500 text-white rounded-md px-3 py-1">{{ $book->category->name }}</small></p>
+                        </div>
                     </div>
-                    <div class="col-span-9 p-2 space-y-4">
-                        <h2 class="font-weight-bold">{{ $book->name }}</h2>
-                        <p class="text-muted text-md">{{ $book->author }}</p>
-                        <p><span class="bg-blue-500 text-white rounded-2xl px-3 py-1">{{ $book->category->name }}</span></p>
-                    </div>
-                </div>
+                </a>
                 @endforeach
 
             </div>
