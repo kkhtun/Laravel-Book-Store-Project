@@ -131,17 +131,6 @@ class BookController extends Controller
     }
 
 
-
-
-
-
-    public function download($filename){
-        $file = public_path()."/books/".$filename.".pdf";
-        $headers = array("Content-Type" => "application/pdf");
-        return response()->file($file, $headers);
-        // return response()->download($file, 'test_book_1.pdf',$headers);
-    }
-
     //Helper function to add session variables
     private function addSessionFlash($check, $string, $error="") {
         if ($check) {

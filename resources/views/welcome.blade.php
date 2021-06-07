@@ -20,12 +20,11 @@
                 <a href="/book?id={{ $book->id }}" class="hover:no-underline hover:text-black">
                     <div class="grid grid-cols-12 border border-1 rounded-md hover:bg-gray-300 focus:bg-gray-300">
                         <div class="col-span-3 p-2">
-                            <!-- {{ $book->filename }} -->
-                            <img src="/books/test.jpg" alt="book cover">
+                            <img src="/books/test.jpg" alt="book cover" class="rounded-md">
                         </div>
                         <div class="col-span-9 p-2 relative">
-                            <h2 class="font-weight-bold">{{ $book->name }}</h2>
-                            <p class="text-muted text-xs text-md">Author: {{ $book->author }}</p>
+                            <h2 class="font-bold text-lg">{{ $book->name }}</h2>
+                            <p class="text-muted text-xs mt-1">Author: {{ $book->author }}</p>
                             <p class="absolute bottom-2 right-2"><small class="bg-blue-500 text-white rounded-md px-3 py-1">{{ $book->category->name }}</small></p>
                         </div>
                     </div>

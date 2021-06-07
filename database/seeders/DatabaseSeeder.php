@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
             "password"=> Hash::make("password")
         ]);
 
-        \App\Models\Category::factory()->has(\App\Models\Book::factory()->count(5))
-        ->count(5)->create();
+        // \App\Models\Category::factory()->has(\App\Models\Book::factory()->count(5))
+        // ->count(5)->create();
     }
 }

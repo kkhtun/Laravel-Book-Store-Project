@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use App\Models\Book;
 use App\Models\Category;
+
 class WelcomeController extends Controller
 {
     
@@ -16,8 +18,6 @@ class WelcomeController extends Controller
         }
         $categories = Category::all();
         return view('welcome', ["books"=>$books, "categories"=>$categories]);
-
-        
     }
 
     function showDetails() {
@@ -26,5 +26,39 @@ class WelcomeController extends Controller
             return view('single-book', ["book"=>$book]);
         }
     }
-    
+
+    function download(Request $req, $filename) {
+        if (File::exists(public_path('books/'.$filename.'.pdf'))) {
+            return response()->download(public_path('books/'.$filename.'.pdf'));
+        } else {
+            $this->addSessionFlash(false, "downloaded", "File does not exist. Please report the issue. Thank you.");
+            return redirect()->back();
+        }
+    }
+
+    function preview(Request $req, $filename) {
+        if (File::exists(public_path('books/'.$filename.'.pdf'))) {
+            return view('preview', ["filename"=> $filename]);
+        } else {
+            $this->addSessionFlash(false, "downloaded", "File does not exist. Please report the issue. Thank you.");
+            return redirect()->back();
+        }
+    }
+
+    // public function download($filename){
+    //     $file = public_path()."/books/".$filename.".pdf";
+    //     $headers = array("Content-Type" => "application/pdf");
+    //     return response()->file($file, $headers);
+    //     // return response()->download($file, 'test_book_1.pdf',$headers);
+    // }
+
+        //Helper function to add session variables
+    private function addSessionFlash($check, $string, $error="") {
+        if ($check) {
+            session(['type' => 'success', 'message'=>"Book $string successfully. $error"]);
+        } else {
+            session(['type' => 'danger', 'message'=>"There was an error. $error"]);
+        }
+    }
+
 }

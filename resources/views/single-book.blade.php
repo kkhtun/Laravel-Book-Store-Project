@@ -10,7 +10,7 @@
                 <div class="card-body grid grid-cols-6 gap-2">
 
                     <div class="lg:col-span-1 col-span-2">
-                        <img src="books/test.jpg" alt="" class="rounded-md">
+                        <img src="/books/test.jpg" alt="book cover" class="rounded-md">
                     </div>
 
                     <div class="lg:col-span-5 col-span-4 pl-2 relative">
@@ -18,8 +18,15 @@
                             <small class="font-semibold">{{ $book->author }}</small>  
                             <p class="lg:absolute top-0 right-0"><small class="border border-1 bg-blue-500 text-white rounded-md px-3 lg:py-1">{{ $book->category->name }}</small></p>
 
-                            <p class="mt-3 p-2 border border-1 rounded-md">{{ $book->about }}</p>                  
-                            <button class="mt-2 btn btn-success font-semibold">Download</button>
+                            <p class="mt-3 p-2 border border-1 rounded-md">{{ $book->about }}</p>
+                              
+                            <div class="mt-4 font-semibold">   
+                                <i class="text-muted text-xs mb-2 block">Please note that some browsers may have issues opening PDF files. For better experience, we suggest downloading the file and opening it using native applications that support PDF viewing.</i>  
+                                <div>      
+                                    <a class="btn btn-success lg:w-32 w-28 m-2" href="{{ url('/download', $book->filename) }}">Download</a>
+                                    <a class="btn btn-outline-info lg:w-32 w-28 m-2" href="{{ url('/preview', $book->filename) }}" target="_blank">View</a>
+                                </div> 
+                            </div>  
                     </div>
                 </div>
             </div>
