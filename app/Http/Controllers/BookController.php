@@ -73,12 +73,12 @@ class BookController extends Controller
             //Check and upload thumbnail cover, please note filename with extension eg. test.jpg will be saved in database
             if($req->file('cover')) {
                 $cover = $req->file('cover');
-                $covername = $filename .'.'.$cover->getClientOriginalExtension();
+                $covername = time().'_'.pathinfo($cover->getClientOriginalName(), PATHINFO_FILENAME);
+                $covername = $covername.'.'.$cover->getClientOriginalExtension();
                 $cover->move('covers', $covername);
                 $book->covername = $covername;
             }
             $result = $book->save();
-
             $this->addSessionFlash($result, "added");
             return redirect("/home?select=books");
         } else {
@@ -138,7 +138,6 @@ class BookController extends Controller
 
         //Check and upload thumbnail cover, please note filename with extension eg. test.jpg will be saved in database
         if($req->file('cover')) {
-            $checkMessage = "";
             $cover = $req->file('cover');
             $covername = time().'_'.pathinfo($cover->getClientOriginalName(), PATHINFO_FILENAME);
             $covername = $covername.'.'.$cover->getClientOriginalExtension();
@@ -150,11 +149,10 @@ class BookController extends Controller
                 File::delete(public_path('covers/'.$book->covername));
                 $checkMessage .= " Old Cover Image has been deleted.";
             } else {
-                $checkMessage .= " [Cannot find old cover file]";
+                $checkMessage .= " [Old cover does not exist]";
             }
-
             $book->covername = $covername;
-            $checkMessage .= " Cover Updated.";
+            $checkMessage .= " New cover Updated.";
         } else {
             $checkMessage .= " No new cover image detected.";
         }

@@ -15,10 +15,10 @@
             </section>
 
         <section class="container lg:mt-14 mt-8"> 
-            <div class="grid lg:grid-cols-3 md:grid-cols-2 gap-2">
+            <div class="inline-grid lg:grid-cols-3 md:grid-cols-2 gap-2">
                 @foreach($books as $book)
                 <a href="/book?id={{ $book->id }}" class="hover:no-underline hover:text-black">
-                    <div class="grid grid-cols-12 border border-1 rounded-md hover:bg-gray-300 focus:bg-gray-300">
+                    <div class="grid grid-cols-12 border border-1 rounded-md hover:bg-gray-300 focus:bg-gray-300 h-full">
                         <div class="col-span-3 p-2">
                             <img src="/covers/{{ $book->covername }}" alt="book cover" onerror="this.src='/covers/placeholder.jpg'" class="rounded-md">
                         </div>

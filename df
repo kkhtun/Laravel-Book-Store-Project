@@ -1,0 +1,12 @@
+[33m24e0dbf[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m working on cover image CRUD admin features
+[33mcf60f14[m[33m ([m[1;31morigin/main[m[33m)[m started working on covers
+[33m12687fa[m updated PDF download feature and preview feature on details page, created new blade called preview for previewing the PDF files
+[33mb88d70b[m styling to main page
+[33m6185c08[m started work on welcome page for users, data passing and category search finished
+[33mb14ccc3[m minor changes
+[33m6a80db3[m updated auth for controlling register, reset and verify
+[33me8dcacc[m full CRUD updated on both books and categories in admin (home) panel
+[33m34a403c[m fixed n+1 problem in home book table query
+[33m17d4a14[m third commit
+[33mf718ff6[m new commit
+[33mfc1a712[m first commit
