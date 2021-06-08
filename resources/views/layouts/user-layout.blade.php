@@ -26,10 +26,17 @@
         font-weight: 700;
         color: #023969;
         }
-    lottie-player{
-    
+
+    @media screen and (max-width: 699px){
+    .img-cover {
+        height:8rem;
     }
-        
+}   
+    .img-cover {
+        width:100%;
+        height:9rem;
+    }
+           
     </style>
 
 <body>
