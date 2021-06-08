@@ -20,7 +20,7 @@
                 <a href="/book?id={{ $book->id }}" class="hover:no-underline hover:text-black">
                     <div class="grid grid-cols-12 border border-1 rounded-md hover:bg-gray-300 focus:bg-gray-300">
                         <div class="col-span-3 p-2">
-                            <img src="/books/test.jpg" alt="book cover" class="rounded-md">
+                            <img src="/covers/{{ $book->filename }}.jpg" alt="book cover" onerror="this.src='/covers/placeholder.jpg'" class="rounded-md">
                         </div>
                         <div class="col-span-9 p-2 relative">
                             <h2 class="font-bold text-lg">{{ $book->name }}</h2>

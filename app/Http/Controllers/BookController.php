@@ -68,6 +68,14 @@ class BookController extends Controller
             $file->move($location, $filename.'.'.$file->getClientOriginalExtension());
             // Save the filename without extension in database
             $book->filename = $filename;
+            
+            //Check and upload thumbnail cover, please note filename with extension eg. test.jpg will be saved in database
+            if($req->file('cover')) {
+                $cover = $req->file('cover');
+                $covername = $filename . $cover->getClientOriginalExtension();
+                $cover->move('covers', $covername);
+                $book->covername = $covername;
+            }
             $result = $book->save();
 
             $this->addSessionFlash($result, "added");
@@ -81,11 +89,17 @@ class BookController extends Controller
 
     public function bookDelete(Request $req) {
         $book = Book::find($req->id);
+        //Delete cover image
+        if (File::exists(public_path('covers/'.$book->covername))) {
+            File::delete(public_path('covers/'.$book->covername));
+        }
+        //Delete PDF file
         if (File::exists(public_path('books/'.$book->filename.'.pdf'))) {
             File::delete(public_path('books/'.$book->filename.'.pdf'));
         } else {
-            $this->addSessionFlash(false, "deleted", "PDF File does not exist.");
-            return redirect("/book-view?id=$req->id"); 
+            $result = $book->delete();
+            $this->addSessionFlash(false, "deleted", "PDF File does not exist. Deleted the existing record.");
+            return redirect('/home?select=books');
         }
         $result = $book->delete();
         $this->addSessionFlash($result, "deleted");

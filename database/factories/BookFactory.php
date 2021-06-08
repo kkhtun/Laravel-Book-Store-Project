@@ -25,7 +25,8 @@ class BookFactory extends Factory
             "name"=> $this->faker->unique()->name(),
             "author"=> $this->faker->name(),
             "about"=> $this->faker->text(),
-            "filename"=> $this->faker->name()
+            "filename"=> $this->faker->name(),
+            "covername"=> $this->faker->name()
         ];
     }
 }
