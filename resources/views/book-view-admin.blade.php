@@ -52,6 +52,14 @@
                             </div>
                         </div>
 
+                        <div class="row items-start">
+                            <label for="covername" class="col-md-4 col-form-label text-md-right">{{ __('Cover Image') }} -</label>
+                            <div class="col-md-6">
+                                <p id="covername">{{ $book->covername ? $book->covername : 'No cover Image detected'}}</p>
+                                <img src="/covers/{{ $book->covername }}" alt="cover image" onerror="this.src='/covers/placeholder.jpg'" class="h-36">
+                            </div>
+                        </div>
+
                         <div class="row items-center">
                             <label for="created_at" class="col-md-4 col-form-label text-md-right">{{ __('Created At') }} -</label>
                             <div class="col-md-6">

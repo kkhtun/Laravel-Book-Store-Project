@@ -10,7 +10,7 @@
                 <div class="card-body grid grid-cols-6 gap-2">
 
                     <div class="lg:col-span-1 col-span-2">
-                        <img src="/covers/{{ $book->filename }}.jpg" alt="book cover" onerror="this.src='/covers/placeholder.jpg'" class="rounded-md">
+                        <img src="/covers/{{ $book->covername }}" alt="book cover" onerror="this.src='/covers/placeholder.jpg'" class="rounded-md">
                     </div>
 
                     <div class="lg:col-span-5 col-span-4 pl-2 relative">

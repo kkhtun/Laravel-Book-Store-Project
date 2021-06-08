@@ -32,13 +32,14 @@ class BookController extends Controller
         if (request("id") && request("perform") == "edit") { //book edit view
             $book = Book::find(request("id"));
             $categories = Category::all('id','name');
-            // For user checking file
+            // For checking cover image
+            $covercheck = $book->covername && File::exists(public_path('covers/'.$book->covername));
+            // For user checking PDF file
             if (File::exists(public_path('books/'.$book->filename.'.pdf'))) {
-                return view("book-edit", ["book" => $book, "categories"=>$categories, "filecheck"=> true]);
+                return view("book-edit", ["book" => $book, "categories"=>$categories, "filecheck"=> true, "covercheck"=>$covercheck]);
             } else {
-                return view("book-edit", ["book" => $book, "categories"=>$categories, "filecheck"=> false]);
+                return view("book-edit", ["book" => $book, "categories"=>$categories, "filecheck"=> false, "covercheck"=>$covercheck]);
             }
-            return view("book-edit", ["book" => $book, "categories"=>$categories]);
         } else if (request("id") && request("perform") == "delete") { //book delete confirm view
             $book = Book::find(request("id"));
             return view("book-delete-confirm", ["book" => $book]);
@@ -72,7 +73,7 @@ class BookController extends Controller
             //Check and upload thumbnail cover, please note filename with extension eg. test.jpg will be saved in database
             if($req->file('cover')) {
                 $cover = $req->file('cover');
-                $covername = $filename . $cover->getClientOriginalExtension();
+                $covername = $filename .'.'.$cover->getClientOriginalExtension();
                 $cover->move('covers', $covername);
                 $book->covername = $covername;
             }
@@ -84,13 +85,12 @@ class BookController extends Controller
             $this->addSessionFlash(false, "Uploaded", "File not uploaded.");
             return redirect("/home?select=books");
         }
-
     }
 
     public function bookDelete(Request $req) {
         $book = Book::find($req->id);
         //Delete cover image
-        if (File::exists(public_path('covers/'.$book->covername))) {
+        if ($book->covername && File::exists(public_path('covers/'.$book->covername))) {
             File::delete(public_path('covers/'.$book->covername));
         }
         //Delete PDF file
@@ -114,6 +114,7 @@ class BookController extends Controller
         $book->author = $req->author;
         $book->about = $req->about;
 
+        $checkMessage = ""; // This message will be added concatenated to check if old pdf file is deleted or not
         if ($req->file('pdf')) {
             $file = $req->file('pdf');
             $filename = time().'_'.pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
@@ -122,7 +123,6 @@ class BookController extends Controller
             // Upload file add pdf extension
             $file->move($location, $filename.'.'.$file->getClientOriginalExtension());
             // Delete the old file
-            $checkMessage = ""; // This message will be added concatenated to check if old pdf file is deleted or not
             if (File::exists(public_path('books/'.$book->filename.'.pdf'))) {
                 File::delete(public_path('books/'.$book->filename.'.pdf'));
                 $checkMessage = " Old PDF file has been deleted.";
@@ -131,17 +131,37 @@ class BookController extends Controller
             }
             // Save the filename without extension in database
             $book->filename = $filename;
-            // Save the records in database
-            $result = $book->save();
-
             $checkMessage = "New PDF file has been updated.". $checkMessage;
-            $this->addSessionFlash($result, "updated", $checkMessage);
-            return redirect("/book-view?id=$req->id");
         } else {
-            $result = $book->save();
-            $this->addSessionFlash($result, "updated", "No New PDF file detected.");
-            return redirect("/book-view?id=$req->id");
+            $checkMessage = " No New PDF file detected.";
         }
+
+        //Check and upload thumbnail cover, please note filename with extension eg. test.jpg will be saved in database
+        if($req->file('cover')) {
+            $checkMessage = "";
+            $cover = $req->file('cover');
+            $covername = time().'_'.pathinfo($cover->getClientOriginalName(), PATHINFO_FILENAME);
+            $covername = $covername.'.'.$cover->getClientOriginalExtension();
+
+            $cover->move('covers', $covername);
+
+            // Delete old cover photo if any
+            if ($book->covername && File::exists(public_path('covers/'.$book->covername))) {
+                File::delete(public_path('covers/'.$book->covername));
+                $checkMessage .= " Old Cover Image has been deleted.";
+            } else {
+                $checkMessage .= " [Cannot find old cover file]";
+            }
+
+            $book->covername = $covername;
+            $checkMessage .= " Cover Updated.";
+        } else {
+            $checkMessage .= " No new cover image detected.";
+        }
+        // Save the records in database
+        $result = $book->save();
+        $this->addSessionFlash($result, "updated", $checkMessage);
+        return redirect("/book-view?id=$req->id");
     }
 
 
@@ -161,7 +181,8 @@ class BookController extends Controller
             'author'=>'required',
             'about'=>'required',
             'category'=>'required',
-            'pdf' => 'required|mimes:pdf'
+            'pdf' => 'required|mimes:pdf',
+            'cover'=> 'mimes:jpg,jpeg,png,bmp'
         ]);
     }
     private function validateRequestWithoutFile($request) {
@@ -169,7 +190,9 @@ class BookController extends Controller
             'name'=>'required',
             'author'=>'required',
             'about'=>'required',
-            'category'=>'required'
+            'category'=>'required',
+            'pdf' => 'mimes:pdf',
+            'cover'=> 'mimes:jpg,jpeg,png,bmp'
         ]);
     }
 

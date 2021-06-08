@@ -79,11 +79,46 @@
                         </div>
 
                         <div class="form-group row items-center">
-                            <label for="pdf" class="col-md-4 col-form-label text-md-right">{{ __('Check the current file or Upload a new file') }}</label>
+                            <label for="pdf" class="col-md-4 col-form-label text-md-right">{{ __('Upload a new PDF file') }}</label>
                             <div class="col-md-6">
                                 <input type="file" name="pdf" {{ $filecheck ? '' : 'required'}} id="pdf">
                             </div>
                         </div>
+
+                        <div class="form-group row">
+                            <label for="cover" class="col-md-4 col-form-label text-md-right">{{ __('Current Cover Image') }}</label>
+                            <div class="col-md-6">
+                                <p>{{ $book->covername }}</p>
+                                <img src="/covers/{{ $book->covername }}" alt="cover image" onerror="this.src='/covers/placeholder.jpg'" class="h-36">   
+                                <div>
+
+                                @if ($covercheck)
+                                <div class="flex items-center">
+                                    <p>Cover Image Present</p>
+                                    <div class="pl-1">
+                                        <x-tick-svg />
+                                    </div>
+                                </div>
+                                @else 
+                                <div class="flex items-center">
+                                    <p>Cover Image Not Found. Choose a new image.</p>
+                                    <div class="pl-1">
+                                        <x-cross-svg />
+                                    </div>
+                                </div>
+                                @endif
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row items-center">
+                            <label for="cover" class="col-md-4 col-form-label text-md-right">{{ __('Upload a new cover image') }}</label>
+                            <div class="col-md-6">
+                                <input type="file" name="cover" id="cover">
+                            </div>
+                        </div>
+
 
 
                         <div class="form-group row mb-0">
