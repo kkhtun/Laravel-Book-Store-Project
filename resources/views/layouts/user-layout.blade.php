@@ -31,7 +31,7 @@
     .img-cover {
         height:8rem;
     }
-}   
+    }   
     .img-cover {
         width:100%;
         height:9rem;
@@ -43,11 +43,11 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-            <div class="flex items-end">
-                <a class="navbar-brand flex-1" href="{{ url('/') }}">
+            <div class="flex items-end -mt-4">
+                <a class="navbar-brand flex-1 pl-2" href="{{ url('/') }}">
                     {{ config('app.name', 'BookHub') }}                    
                 </a>                
-                <lottie-player class="flex-1" src="https://assets4.lottiefiles.com/packages/lf20_n2yhd0lo.json"  background="transparent"  speed="1"  style="width: 100px; height: 80px;"  loop  autoplay></lottie-player>
+                <lottie-player class="flex-1 -ml-2" src="https://assets4.lottiefiles.com/packages/lf20_n2yhd0lo.json"  background="transparent"  speed="1"  style="width: 100px; height: 80px;"  loop  autoplay></lottie-player>
             </div>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">

@@ -108,6 +108,10 @@ th, td {
                 </table>
                 @endif
             </div>
+            {{-- Pagination links --}}
+            <div class="m-2">
+                {{ $items->links() }}
+            </div>
         </div>
     </div>
 </div>

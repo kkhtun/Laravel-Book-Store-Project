@@ -33,5 +33,8 @@
                 @endforeach
 
             </div>
+            <div class="m-2">
+                 {{ $books->links() }}
+            </div>
         </section>
 @endsection
