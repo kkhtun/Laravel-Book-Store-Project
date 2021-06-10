@@ -14,8 +14,14 @@
                 </form>
             </section>
             
+        
 
-        <section class="container lg:mt-14 mt-8"> 
+        <section class="container lg:mt-14 mt-8">
+            {{-- pagination links top  --}}
+            <div class="m-4">
+                 {{ $books->links('pagination.custom-pagination') }}
+            </div> 
+
             <div class="inline-grid lg:grid-cols-3 md:grid-cols-2 gap-2">
                 @foreach($books as $book)
                 <a href="/book?id={{ $book->id }}" class="hover:no-underline hover:text-black">
@@ -31,10 +37,12 @@
                     </div>
                 </a>
                 @endforeach
-
             </div>
+
+            {{-- pagination links bottom --}}
             <div class="m-2">
-                 {{ $books->links() }}
+                 {{ $books->links('pagination.custom-pagination', ["showInfo"=>true]) }}
             </div>
         </section>
+
 @endsection

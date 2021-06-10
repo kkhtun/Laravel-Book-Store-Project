@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
             "password"=> Hash::make("user1@bookhub")
         ]);
 
-        // \App\Models\Category::factory()->has(\App\Models\Book::factory()->count(10))
+        // \App\Models\Category::factory()->has(\App\Models\Book::factory()->count(50))
         // ->count(5)->create();
     }
 }

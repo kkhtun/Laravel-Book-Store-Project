@@ -51,7 +51,7 @@
                         @else
 
                             {{-- Links for viewing books and categories in dashboard --}}
-                            @if (request("select") && request("select") == "books")
+                            @if (request("select") && request("select") == "books" || (isset($page) && $page == "books"))
                                 <li class="nav-item hover:bg-gray-400 bg-gray-300 rounded-md">
                             @else
                                 <li class="nav-item hover:bg-gray-400 rounded-md">
@@ -59,7 +59,7 @@
                                 <a class="nav-link" href="/home?select=books">Books</a>
                             </li>
 
-                            @if (request("select") && request("select") == "categories")
+                            @if (request("select") && request("select") == "categories" || (isset($page) && $page == "categories"))
                                 <li class="nav-item hover:bg-gray-400 bg-gray-300 rounded-md">
                             @else
                                 <li class="nav-item hover:bg-gray-400 rounded-md">

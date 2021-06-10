@@ -110,7 +110,7 @@ th, td {
             </div>
             {{-- Pagination links --}}
             <div class="m-2">
-                {{ $items->links() }}
+                 {{ $items->links('pagination.custom-pagination', ["showInfo"=>true]) }}
             </div>
         </div>
     </div>
