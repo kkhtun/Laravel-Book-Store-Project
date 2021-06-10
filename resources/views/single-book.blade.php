@@ -1,6 +1,6 @@
 @extends('layouts.user-layout')
 @section('user-content')
-<div class="container">
+<div class="container mb-8">
     <div class="row justify-content-center">
         <div class="col-md-11">
             <x-flash-message />

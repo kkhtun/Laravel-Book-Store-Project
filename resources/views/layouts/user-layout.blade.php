@@ -103,6 +103,31 @@
             @yield('user-content')
         </main>
 
+        <footer class="shadow-md p-2 bg-white" style="transform: scaleY(-1);">
+            <div class="container" style="transform: scaleY(-1);">
+                <div class="grid md:grid-cols-2 gap-2 pt-6 pb-12">
+
+                    <section class="mx-auto">
+                        <div class="flex items-end">
+                            <a class="pl-10 sm:pl-6 -mr-2 mb-2 text-3xl navbar-brand" href="{{ url('/') }}">
+                                    {{ config('app.name', 'BookHub') }}                   
+                            </a>                
+                            <lottie-player class="" src="https://assets4.lottiefiles.com/packages/lf20_n2yhd0lo.json"  background="transparent"  speed="1"  style="width: 100px; height: 80px;"  loop  autoplay></lottie-player>
+                        </div>
+                    </section>
+                        
+                    <section class="mx-auto">
+                        <p class="max-w-md mx-auto text-lg pt-4 text-center">
+                            <q class="font-semibold">Education is the most powerful weapon which you can use to change the world.</q>
+                            <i>- Nelson Mendela</i>
+                        </p>
+                        
+                    </section>
+                </div>
+                <p class="text-center">&copy; BookHub 2021</p>
+            </div>
+        </footer>
+        
     </div>
 </body>
     <!-- Scripts -->
