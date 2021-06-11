@@ -133,16 +133,19 @@
                             <!-- Facebook -->
                             <a
                                 class="btn btn-floating m-1 w-16"
-                                href="#!"
+                                href="https://www.facebook.com/Alpha-Projects-105503161769400/"
                                 role="button"
+                                title="Alpha Projects Facebook Page"
                                 ><img src="/icons/facebook.png" alt="">
                             </a>
 
-                            <!-- Google -->
+                            <!-- Gmail -->
                             <a
                                 class="btn btn-floating m-1 w-16"
-                                href="#!"
+                                href="mailto: freedomformyanmar2021@gmail.com"
                                 role="button"
+                                target="_blank"
+                                title="freedomformyanmar2021@gmail.com"
                                 ><img src="/icons/gmail.png" alt=""></i
                             ></a>
                             <!-- Section: Social media -->
