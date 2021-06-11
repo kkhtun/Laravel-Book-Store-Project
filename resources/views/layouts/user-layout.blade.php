@@ -16,12 +16,14 @@
     <!-- Styles -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous"></head>
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-    
-    .navbar .navbar-brand {
+    body {
         font-family: 'Poppins', sans-serif;
+    }
+    .navbar .navbar-brand {
         font-size: 2rem;
         font-weight: 700;
         color: #023969;
@@ -105,9 +107,9 @@
 
         <footer class="shadow-md p-2 bg-white" style="transform: scaleY(-1);">
             <div class="container" style="transform: scaleY(-1);">
-                <div class="grid md:grid-cols-2 gap-2 pt-6 pb-12">
+                <div class="grid md:grid-cols-12 gap-2 pt-6 pb-12">
 
-                    <section class="mx-auto">
+                    <section class="mx-auto col-span-4">
                         <div class="flex items-end">
                             <a class="pl-10 sm:pl-6 -mr-2 mb-2 text-3xl navbar-brand" href="{{ url('/') }}">
                                     {{ config('app.name', 'BookHub') }}                   
@@ -116,12 +118,37 @@
                         </div>
                     </section>
                         
-                    <section class="mx-auto">
+                    <section class="mx-auto col-span-4">
                         <p class="max-w-md mx-auto text-lg pt-4 text-center">
                             <q class="font-semibold">Education is the most powerful weapon which you can use to change the world.</q>
                             <i>- Nelson Mendela</i>
                         </p>
                         
+                    </section>
+
+                    <section class="mx-auto col-span-4 mt-8">
+                        <!-- Section: Social media -->
+                        <div class="container">
+                            <div class="flex justify-center">
+                            <!-- Facebook -->
+                            <a
+                                class="btn btn-floating m-1 w-16"
+                                href="#!"
+                                role="button"
+                                ><img src="/icons/facebook.png" alt="">
+                            </a>
+
+                            <!-- Google -->
+                            <a
+                                class="btn btn-floating m-1 w-16"
+                                href="#!"
+                                role="button"
+                                ><img src="/icons/gmail.png" alt=""></i
+                            ></a>
+                            <!-- Section: Social media -->
+                            </div>
+                        </div>
+                        <p class="text-center text-muted">Please contact us for contribution</p>
                     </section>
                 </div>
                 <p class="text-center">&copy; BookHub 2021</p>
