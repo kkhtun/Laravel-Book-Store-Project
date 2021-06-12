@@ -24,7 +24,7 @@
                                 <i class="text-muted text-xs mb-2 block">Please note that some browsers may have issues opening PDF files. For better experience, we suggest downloading the file and opening it using native applications that support PDF viewing.</i>  
                                 <div>      
                                     <a class="btn btn-success lg:w-32 w-28 m-2" href="{{ url('/download', $book->filename) }}">Download</a>
-                                    <a class="btn btn-outline-info lg:w-32 w-28 m-2" href="{{ url('/preview', $book->filename) }}" target="_blank">View</a>
+                                    <a class="btn btn-outline-info lg:w-32 w-28 m-2" href="{{ url('/preview', $book->filename) }}" target="_blank">Preview</a>
                                 </div> 
                             </div>  
                     </div>
