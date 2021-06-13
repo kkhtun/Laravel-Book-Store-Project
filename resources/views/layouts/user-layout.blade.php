@@ -5,10 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
-    
 
-    <title>{{ config('app.name', 'BookHub') }} Myanmar Online</title>
-
+    {{-- meta tags --}}
+    <x-meta-thumbnails />
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
