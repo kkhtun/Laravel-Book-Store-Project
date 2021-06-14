@@ -45,6 +45,10 @@ class WelcomeController extends Controller
         }
     }
 
+    function showDonate() {
+        $bookCount = Book::count();
+        return view("donate", ["bookCount" => $bookCount]);
+    }
     // public function download($filename){
     //     $file = public_path()."/books/".$filename.".pdf";
     //     $headers = array("Content-Type" => "application/pdf");

@@ -20,6 +20,7 @@ Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index']);
 Route::get('/book', [App\Http\Controllers\WelcomeController::class, 'showDetails']);
 Route::get('/download/{filename}', [App\Http\Controllers\WelcomeController::class, 'download']);
 Route::get('/preview/{filename}', [App\Http\Controllers\WelcomeController::class, 'preview']);
+Route::get('/donate', [App\Http\Controllers\WelcomeController::class, 'showDonate']);
 
 Auth::routes([
   'register' => false, // Registration Routes...

@@ -69,6 +69,9 @@
                                     <li class="nav-item">
                                         <a href="{{ url('/') }}" class="nav-link">Home</a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a href="{{ url('/donate') }}" class="nav-link">Donate Us</a>
+                                    </li>
                                     @auth
                                     <li class="nav-item">
                                         <a href="{{ url('/home') }}" class="nav-link">Admin</a>
@@ -134,16 +137,16 @@
                                 class="btn btn-floating m-1 w-16"
                                 href="https://www.facebook.com/BookHub-Online-101591935501600"
                                 role="button"
-                                title="Alpha Projects Facebook Page"
+                                title="Book Hub Myanmar Online Facebook Page"
                                 ><img src="/icons/facebook.png" alt="">
                             </a>
 
                             <!-- Gmail -->
                             <a
                                 class="btn btn-floating m-1 w-16"
-                                href="mailto: freedomformyanmar2021@gmail.com"
+                                href="mailto: bookhubmyanmaronline@gmail.com"
                                 role="button"
-                                title="freedomformyanmar2021@gmail.com"
+                                title="bookhubmyanmaronline@gmail.com"
                                 ><img src="/icons/gmail.png" alt=""></i
                             ></a>
                             <!-- Section: Social media -->
