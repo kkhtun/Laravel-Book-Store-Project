@@ -32,10 +32,10 @@ class HomeController extends Controller
                 $items = Book::with('category')->orderBy('updated_at','DESC')->paginate(30); //with() to prevent lazy loading of laravel
             }
             $categories = Category::all('id', 'name'); //for categorySearch filter
-            return view("home", ["items"=> $items, "categories"=> $categories, "page"=>"books"]);
+            return view("admin.home", ["items"=> $items, "categories"=> $categories, "page"=>"books"]);
         } else if (request("select") == "categories") {
             $items = Category::paginate(10);
-            return view("home", ["items"=> $items, "page"=>"categories"]);
+            return view("admin.home", ["items"=> $items, "page"=>"categories"]);
         }
 
     }

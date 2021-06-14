@@ -26,13 +26,13 @@ class CategoryController extends Controller
     // Category links for delete and edit will be displayed inline in the table, no individual views need for each item
     public function index() {
         if (request("perform") == "add") {
-            return view("cat-new");
+            return view("admin.cat-new");
         } else if (request("perform") == "edit" && request("id")) {
             $category = Category::find(request("id"));
-            return view("cat-edit", ["category" => $category]);
+            return view("admin.cat-edit", ["category" => $category]);
         } else if (request("perform") == "delete" && request("id")) {
             $category = Category::find(request("id"));
-            return view("cat-delete-confirm", ["category" => $category]);
+            return view("admin.cat-delete-confirm", ["category" => $category]);
         }
     }
 

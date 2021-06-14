@@ -36,19 +36,19 @@ class BookController extends Controller
             $covercheck = $book->covername && File::exists(public_path('covers/'.$book->covername));
             // For user checking PDF file
             if (File::exists(public_path('books/'.$book->filename.'.pdf'))) {
-                return view("book-edit", ["book" => $book, "categories"=>$categories, "filecheck"=> true, "covercheck"=>$covercheck]);
+                return view("admin.book-edit", ["book" => $book, "categories"=>$categories, "filecheck"=> true, "covercheck"=>$covercheck]);
             } else {
-                return view("book-edit", ["book" => $book, "categories"=>$categories, "filecheck"=> false, "covercheck"=>$covercheck]);
+                return view("admin.book-edit", ["book" => $book, "categories"=>$categories, "filecheck"=> false, "covercheck"=>$covercheck]);
             }
         } else if (request("id") && request("perform") == "delete") { //book delete confirm view
             $book = Book::find(request("id"));
-            return view("book-delete-confirm", ["book" => $book]);
+            return view("admin.book-delete-confirm", ["book" => $book]);
         } else if (request("id") && !request("perform")) { //view single book detail
             $book = Book::find(request("id"));
-            return view("book-view-admin", ["book" => $book]);
+            return view("admin.book-view-admin", ["book" => $book]);
         } else if (!request("id") && request("perform")=="add") { //book add view
             $categories = Category::all('id','name');
-            return view("book-new", ["categories"=>$categories]);
+            return view("admin.book-new", ["categories"=>$categories]);
         }
     }
 
