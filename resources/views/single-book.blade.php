@@ -20,7 +20,7 @@
 
                             <p class="mt-3 p-2 border border-1 rounded-md sm:text-md text-sm text-justify">{{ $book->about }}</p>
                               
-                            <div class="mt-4 font-semibold">   
+                            <div class="sm:mt-0 mt-4 font-semibold">   
                                 <i class="text-muted text-xs mb-2 block text-justify pr-1">Please note that some browsers may have issues opening PDF files. For better experience, we suggest downloading the file and opening it using native applications that support PDF viewing. For Safari, directly use the download link to view the PDF.</i>  
                                 <div class="mt-2 text-md-left text-center">      
                                     <a class="btn btn-success lg:w-32 w-28 m-2" href="{{ url('/download', $book->filename) }}">Download</a>
