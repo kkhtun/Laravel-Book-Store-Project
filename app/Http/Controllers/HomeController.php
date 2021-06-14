@@ -27,9 +27,9 @@ class HomeController extends Controller
     {
         if (request("select") == "books" || !request("select")) {
             if (request("categorySearch")) {
-                $items = Book::where('category_id', request('categorySearch'))->with('category')->orderBy('updated_at','DESC')->paginate(30);
+                $items = Book::where('category_id', request('categorySearch'))->with('category')->orderBy('name')->paginate(30);
             } else {
-                $items = Book::with('category')->orderBy('updated_at','DESC')->paginate(30); //with() to prevent lazy loading of laravel
+                $items = Book::with('category')->orderBy('name')->paginate(30); //with() to prevent lazy loading of laravel
             }
             $categories = Category::all('id', 'name'); //for categorySearch filter
             return view("admin.home", ["items"=> $items, "categories"=> $categories, "page"=>"books"]);

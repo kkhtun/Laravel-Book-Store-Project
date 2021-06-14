@@ -12,9 +12,9 @@ class WelcomeController extends Controller
     
     function index () {
         if (request("categorySearch")) {
-            $books = Book::where('category_id', request('categorySearch'))->with('category')->orderBy('updated_at','DESC')->paginate(18);
+            $books = Book::where('category_id', request('categorySearch'))->with('category')->orderBy('name')->paginate(18);
         } else {
-            $books = Book::with('category')->orderBy('updated_at','DESC')->paginate(18); //with() to prevent lazy loading of laravel
+            $books = Book::with('category')->orderBy('name')->paginate(18); //with() to prevent lazy loading of laravel
         }
         $categories = Category::all();
         return view('welcome', ["books"=>$books, "categories"=>$categories]);
