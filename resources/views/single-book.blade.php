@@ -13,7 +13,7 @@
                         <img src="/covers/{{ $book->covername }}" alt="book cover" onerror="this.src='/covers/placeholder.jpg'" class="rounded-md sm:h-auto h-48 mx-auto">
                     </div>
 
-                    <div class="lg:col-span-5 col-span-4 pl-2 relative mt-1">
+                    <div class="lg:col-span-5 col-span-4 sm:pl-2 relative mt-1">
                             <h2 class="text-2xl">{{ $book->name }}</h2>
                             <span class="text-muted text-sm">Author: </span><small class="font-semibold">{{ $book->author }}</small>  
                             <p class="lg:absolute top-0 right-0"><small class="border border-1 bg-blue-500 text-white rounded-md px-3 lg:py-1">{{ $book->category->name }}</small></p>
