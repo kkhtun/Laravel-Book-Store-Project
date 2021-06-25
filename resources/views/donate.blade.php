@@ -31,9 +31,19 @@
 
             <section class="text-center mt-5 mb-5">
                 <h2 class="mb-2">We are also planning to share our efforts to all those oppressed and endangered.</h2>
-                <p class="text-gray-300 text-muted">Plan to raise donation funds for CDMers, Internally Displaced People and revolutionary heroes. (Coming Soon)</p>
+                <p class="text-gray-300 text-muted max-w-3xl mx-auto">If you are satisfied with our efforts, please feel free to donate funds for CDMers, Internally Displaced People and revolutionary heroes by contacting our facebook page.</p>
+                <div class="flex justify-center items-center mt-2 -ml-4">
+                    <a
+                    class="btn btn-floating m-1 w-16"
+                    href="https://www.facebook.com/BookHub-Online-101591935501600"
+                    role="button"
+                    title="Book Hub Myanmar Online Facebook Page"
+                    ><img src="/icons/facebook.png" alt="facebook link"></a>
+                    <p class="text-gray-500">BookHub Online</p>
+                </div>
             </section>
 
+            <hr class="mx-auto" style="width: 70%;">
 
 
 
